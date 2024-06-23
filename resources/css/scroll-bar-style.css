@@ -1,0 +1,8 @@
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    @apply h-3 border-y-[1px] border-x-0 border-solid bg-zinc-50 border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply rounded-lg dark:bg-zinc-700 bg-zinc-300;
+}
