@@ -2,6 +2,13 @@
 
 This package is an Inertia.js table built with Laravel and Vue. The design and code structure are highly inspired by FilamentPHP's table.
 
+## Features
+
+- Light/dark mode
+- Pagination with custom items per page. Default to `[10, 20, 50, 100]`
+- Searchable with relationships
+- more features to be added ...
+
 ## Installation
 
 You can install the package via composer:
