@@ -6,8 +6,6 @@ use Closure;
 
 trait HasDescription
 {
-    use HasEvaluate;
-
     protected string|Closure|null $description = null;
 
     public function description(string|Closure|null $description): static
@@ -17,8 +15,8 @@ trait HasDescription
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string|Closure|null
     {
-        return $this->evaluate($this->description);
+        return $this->description;
     }
 }

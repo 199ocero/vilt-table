@@ -6,8 +6,6 @@ use Closure;
 
 trait HasEmptyState
 {
-    use HasEvaluate;
-
     protected string|Closure|null $emptyStateHeading = null;
 
     protected string|Closure|null $emptyStateDescription = null;
@@ -26,13 +24,13 @@ trait HasEmptyState
         return $this;
     }
 
-    public function getEmptyStateHeading(): ?string
+    public function getEmptyStateHeading(): string|Closure|null
     {
-        return $this->evaluate($this->emptyStateHeading) ?? 'No records found';
+        return $this->emptyStateHeading ?? 'No records found';
     }
 
-    public function getEmptyStateDescription(): ?string
+    public function getEmptyStateDescription(): string|Closure|null
     {
-        return $this->evaluate($this->emptyStateDescription);
+        return $this->emptyStateDescription;
     }
 }

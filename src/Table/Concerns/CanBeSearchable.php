@@ -6,9 +6,7 @@ use Closure;
 
 trait CanBeSearchable
 {
-    use HasEvaluate;
-
-    protected bool|Closure $searchable;
+    protected bool|Closure $searchable = true;
 
     protected int|Closure $searchDebounce = 500;
 
@@ -19,9 +17,9 @@ trait CanBeSearchable
         return $this;
     }
 
-    public function isSearchable(): bool
+    public function isSearchable(): bool|Closure
     {
-        return $this->evaluate($this->searchable ?? false);
+        return $this->searchable;
     }
 
     public function searchDebounce(int|Closure $debounce = 500): static
@@ -31,8 +29,8 @@ trait CanBeSearchable
         return $this;
     }
 
-    public function getSearchDebounce(): int
+    public function getSearchDebounce(): int|Closure
     {
-        return $this->evaluate($this->searchDebounce);
+        return $this->searchDebounce;
     }
 }

@@ -4,18 +4,24 @@ namespace JAOcero\LaravelInertiaTable\Table;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use JAOcero\LaravelInertiaTable\Table\Concerns\CanEvaluateDependencyInjection;
 use JAOcero\LaravelInertiaTable\Table\Concerns\CanFormatDate;
 use JAOcero\LaravelInertiaTable\Table\Contracts\HasTable;
 
 class TableResource implements HasTable
 {
+    use CanEvaluateDependencyInjection;
     use CanFormatDate;
 
     protected ?string $model = null;
 
     protected Table $table;
+
+    protected array $columns = [];
 
     public function __construct()
     {
@@ -41,6 +47,8 @@ class TableResource implements HasTable
         $filters = $this->getFilters();
 
         $columns = $this->table()->getColumns();
+
+        $this->columns = $columns;
 
         $this->resolveNestedColumns($columns, $query, $filters['search']);
 
@@ -81,21 +89,38 @@ class TableResource implements HasTable
 
         foreach ($columns as $column) {
 
-            if (str_contains($column['name'], '.')) {
+            $name = $column->getName();
 
-                [$relation, $relationColumn] = explode('.', $column['name']);
+            if (str_contains($name, '.')) {
+
+                [$relation, $relationColumn] = explode('.', $name);
 
                 $value = data_get($item, $relation.'.'.$relationColumn);
             } else {
 
-                $value = $item->{$column['name']};
+                $value = $item->{$name};
             }
 
-            if ($column['date'] && $column['date']['format'] && $column['date']['timezone']) {
-                $value = $this->formatDate($value, $column['date']['format'], $column['date']['timezone'], $column['name']);
+            // check if the can be formatted
+            if ($column->getFormat()) {
+                $value = $this->formatDate($value, $column->getFormat(), $column->getTimezone(), $name);
             }
 
-            $transformedItem[$column['name']] = $value;
+            // check if state can be formatted
+            if (is_callable($column->getFormattedState())) {
+                $value = $this->evaluate($column->getFormattedState(),
+                    namedInjections: [
+                        'state' => $value,
+                        'record' => $item,
+                    ],
+                    typedInjections: [
+                        Model::class => $item,
+                        $this->model => $item,
+                    ]
+                );
+            }
+
+            $transformedItem[$name] = $value;
         }
 
         return $transformedItem;
@@ -110,8 +135,8 @@ class TableResource implements HasTable
         $searchConditions = [];
 
         foreach ($columns as $column) {
-            $name = $column['name'];
-            $searchable = $column['searchable']['enabled'] ?? false;
+            $name = $column->getName();
+            $searchable = $this->evaluate($column->isSearchable());
 
             if ($searchable) {
                 if (strpos($name, '.') !== false) {
@@ -168,13 +193,27 @@ class TableResource implements HasTable
         }
     }
 
+    protected function getColumnLabels(array $columns): array
+    {
+        $columnLabels = [];
+
+        foreach ($columns as $column) {
+            $parts = explode('.', $column->getName());
+            $columnName = array_pop($parts);
+            $label = Str::replace('.', ' ', $this->evaluate($column->getLabel()) ?? $columnName);
+            $columnLabels[$column->getName()] = Str::title(Str::replace('_', ' ', $label));
+        }
+
+        return $columnLabels;
+    }
+
     public function getResourceRecords(): Collection
     {
         return collect([
             'table' => $this->prepareResourceRecords(),
             'filters' => $this->getFilters(),
             'pagination' => $this->table->getPaginate(),
-            'columns' => $this->table->getColumnLabels(),
+            'columns' => $this->getColumnLabels($this->columns),
             'heading' => $this->table->getHeading(),
             'description' => $this->table->getDescription(),
             'emptyStateHeading' => $this->table->getEmptyStateHeading(),

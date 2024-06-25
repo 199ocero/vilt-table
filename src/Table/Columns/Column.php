@@ -3,12 +3,14 @@
 namespace JAOcero\LaravelInertiaTable\Table\Columns;
 
 use JAOcero\LaravelInertiaTable\Table\Concerns\CanBeSearchable;
+use JAOcero\LaravelInertiaTable\Table\Concerns\CanFormatState;
 use JAOcero\LaravelInertiaTable\Table\Concerns\HasLabel;
 use JAOcero\LaravelInertiaTable\Table\Concerns\HasName;
 
 class Column
 {
     use CanBeSearchable;
+    use CanFormatState;
     use HasLabel;
     use HasName;
 

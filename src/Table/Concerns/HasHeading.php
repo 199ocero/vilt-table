@@ -6,8 +6,6 @@ use Closure;
 
 trait HasHeading
 {
-    use HasEvaluate;
-
     protected string|Closure|null $heading = null;
 
     public function heading(string|Closure|null $heading): static
@@ -17,8 +15,8 @@ trait HasHeading
         return $this;
     }
 
-    public function getHeading(): ?string
+    public function getHeading(): string|Closure|null
     {
-        return $this->evaluate($this->heading);
+        return $this->heading;
     }
 }

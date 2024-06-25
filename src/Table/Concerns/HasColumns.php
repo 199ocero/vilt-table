@@ -2,7 +2,6 @@
 
 namespace JAOcero\LaravelInertiaTable\Table\Concerns;
 
-use Illuminate\Support\Str;
 use InvalidArgumentException;
 use JAOcero\LaravelInertiaTable\Table\Columns\Column;
 
@@ -19,41 +18,16 @@ trait HasColumns
 
     public function getColumns(): array
     {
-        $columnQuery = [];
+        $columns = [];
 
         foreach ($this->columns as $column) {
             if ($column instanceof Column || is_subclass_of($column, Column::class)) {
-                $columnQuery[] = [
-                    'name' => $column->getName(),
-                    'label' => $column->getLabel(),
-                    'date' => [
-                        'format' => method_exists($column, 'getFormat') ? $column->getFormat() : null,
-                        'timezone' => method_exists($column, 'getTimezone') ? $column->getTimezone() : null,
-                    ],
-                    'searchable' => [
-                        'enabled' => method_exists($column, 'isSearchable') ? $column->isSearchable() : null,
-                        'debounce' => method_exists($column, 'getDebounce') ? $column->getDebounce() : null,
-                    ],
-                ];
+                $columns[] = $column;
             } else {
-                throw new InvalidArgumentException('Table column must be an instance of '.Column::class.'.');
+                throw new InvalidArgumentException('Table column must be an instance of '.$column::class);
             }
         }
 
-        return $columnQuery;
-    }
-
-    public function getColumnLabels(): array
-    {
-        $columnLabels = [];
-
-        foreach ($this->columns as $column) {
-            $parts = explode('.', $column->getName());
-            $columnName = array_pop($parts);
-            $label = Str::replace('.', ' ', $column->getLabel() ?? $columnName);
-            $columnLabels[$column->getName()] = Str::title(Str::replace('_', ' ', $label));
-        }
-
-        return $columnLabels;
+        return $columns;
     }
 }

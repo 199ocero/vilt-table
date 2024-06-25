@@ -6,8 +6,6 @@ use Closure;
 
 trait HasLabel
 {
-    use HasEvaluate;
-
     protected string|Closure|null $label = null;
 
     public function label(string|Closure|null $label): static
@@ -17,8 +15,8 @@ trait HasLabel
         return $this;
     }
 
-    public function getLabel(): ?string
+    public function getLabel(): string|Closure|null
     {
-        return $this->evaluate($this->label);
+        return $this->label;
     }
 }

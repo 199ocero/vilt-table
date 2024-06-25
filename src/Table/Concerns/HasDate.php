@@ -4,8 +4,6 @@ namespace JAOcero\LaravelInertiaTable\Table\Concerns;
 
 trait HasDate
 {
-    use HasEvaluate;
-
     protected ?string $date = null;
 
     protected ?string $format = null;
@@ -22,11 +20,11 @@ trait HasDate
 
     public function getTimezone(): ?string
     {
-        return $this->evaluate($this->timezone) ?? config('app.timezone');
+        return $this->timezone ?? config('app.timezone');
     }
 
     public function getFormat(): ?string
     {
-        return $this->evaluate($this->format);
+        return $this->format;
     }
 }
