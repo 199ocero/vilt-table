@@ -92,18 +92,9 @@ class TableResource implements HasTable
             $name = $column->getName();
 
             if (str_contains($name, '.')) {
-
-                [$relation, $relationColumn] = explode('.', $name);
-
-                $value = data_get($item, $relation.'.'.$relationColumn);
+                $value = data_get($item, $name);
             } else {
-
                 $value = $item->{$name};
-            }
-
-            // check if the can be formatted
-            if ($column->getFormat()) {
-                $value = $this->formatDate($value, $column->getFormat(), $column->getTimezone(), $name);
             }
 
             // check if state can be formatted
@@ -118,6 +109,11 @@ class TableResource implements HasTable
                         $this->model => $item,
                     ]
                 );
+            }
+
+            // check if the date can be formatted
+            if ($column->getFormat()) {
+                $value = $this->formatDate($value, $column->getFormat(), $column->getTimezone(), $name);
             }
 
             $transformedItem[$name] = $value;
