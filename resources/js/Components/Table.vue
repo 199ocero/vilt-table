@@ -38,7 +38,7 @@
                             v-for="(value, key) in resources.columns"
                             :key="key"
                             scope="col"
-                            class="px-6 py-3 text-zinc-900 dark:text-white"
+                            class="px-6 py-3 text-zinc-900 dark:text-white whitespace-nowrap"
                         >
                             {{ value }}
                         </th>
