@@ -1,11 +1,11 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table\Columns;
+namespace JAOcero\ViltTable\Table\Columns;
 
-use JAOcero\LaravelInertiaTable\Table\Concerns\CanBeSearchable;
-use JAOcero\LaravelInertiaTable\Table\Concerns\CanFormatState;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasLabel;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasName;
+use JAOcero\ViltTable\Table\Concerns\CanBeSearchable;
+use JAOcero\ViltTable\Table\Concerns\CanFormatState;
+use JAOcero\ViltTable\Table\Concerns\HasLabel;
+use JAOcero\ViltTable\Table\Concerns\HasName;
 
 class Column
 {

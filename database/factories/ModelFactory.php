@@ -1,6 +1,6 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Database\Factories;
+namespace JAOcero\ViltTable\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

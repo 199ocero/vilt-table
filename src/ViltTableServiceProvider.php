@@ -1,11 +1,11 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable;
+namespace JAOcero\ViltTable;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelInertiaTableServiceProvider extends PackageServiceProvider
+class ViltTableServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -15,6 +15,6 @@ class LaravelInertiaTableServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('laravel-inertia-table');
+            ->name('vilt-table');
     }
 }

@@ -14,7 +14,7 @@ This package is an Inertia.js table built with Laravel, Vue, and TailwindCSS. Th
 You can install the package via composer:
 
 ```bash
-composer require jaocero/laravel-inertia-table
+composer require jaocero/vilt-table
 ```
 
 ## Testing

@@ -1,12 +1,13 @@
 {
-    "name": "jaocero/laravel-inertia-table",
-    "description": "This package is an Inertia.js table built with Laravel and Vue. The design and code structure are highly inspired by FilamentPHP's table.",
+    "name": "jaocero/vilt-table",
+    "description": "This package is an Inertia.js table built with Laravel, Vue, and TailwindCSS. The design and code structure are highly inspired by FilamentPHP's table.",
     "keywords": [
         "jaocero",
         "laravel",
-        "laravel-inertia-table"
+        "vue-inertia-laravel-tailwindcss-table",
+        "vilt"
     ],
-    "homepage": "https://github.com/jaocero/laravel-inertia-table",
+    "homepage": "https://github.com/jaocero/vilt-table",
     "license": "MIT",
     "authors": [
         {
@@ -34,19 +35,19 @@
     },
     "autoload": {
         "psr-4": {
-            "JAOcero\\LaravelInertiaTable\\": "src/",
-            "JAOcero\\LaravelInertiaTable\\Database\\Factories\\": "database/factories/"
+            "JAOcero\\ViltTable\\": "src/",
+            "JAOcero\\ViltTable\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JAOcero\\LaravelInertiaTable\\Tests\\": "tests/",
+            "JAOcero\\ViltTable\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-laravel-inertia-table --ansi",
+        "clear": "@php vendor/bin/testbench package:purge-vilt-table --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
             "@composer run prepare",
@@ -72,10 +73,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "JAOcero\\LaravelInertiaTable\\LaravelInertiaTableServiceProvider"
+                "JAOcero\\ViltTable\\ViltTableServiceProvider"
             ],
             "aliases": {
-                "LaravelInertiaTable": "JAOcero\\LaravelInertiaTable\\Facades\\LaravelInertiaTable"
+                "ViltTable": "JAOcero\\ViltTable\\Facades\\ViltTable"
             }
         }
     },

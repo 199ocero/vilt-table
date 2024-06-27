@@ -1,8 +1,8 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table\Columns;
+namespace JAOcero\ViltTable\Table\Columns;
 
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasDate;
+use JAOcero\ViltTable\Table\Concerns\HasDate;
 
 class TextColumn extends Column
 {

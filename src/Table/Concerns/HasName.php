@@ -1,6 +1,6 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table\Concerns;
+namespace JAOcero\ViltTable\Table\Concerns;
 
 trait HasName
 {

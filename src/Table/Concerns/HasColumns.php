@@ -1,9 +1,9 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table\Concerns;
+namespace JAOcero\ViltTable\Table\Concerns;
 
 use InvalidArgumentException;
-use JAOcero\LaravelInertiaTable\Table\Columns\Column;
+use JAOcero\ViltTable\Table\Columns\Column;
 
 trait HasColumns
 {

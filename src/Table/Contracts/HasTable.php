@@ -1,8 +1,8 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table\Contracts;
+namespace JAOcero\ViltTable\Table\Contracts;
 
-use JAOcero\LaravelInertiaTable\Table\Table;
+use JAOcero\ViltTable\Table\Table;
 
 interface HasTable
 {

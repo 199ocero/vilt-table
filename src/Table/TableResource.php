@@ -1,6 +1,6 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table;
+namespace JAOcero\ViltTable\Table;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use JAOcero\LaravelInertiaTable\Table\Concerns\CanEvaluateDependencyInjection;
-use JAOcero\LaravelInertiaTable\Table\Concerns\CanFormatDate;
-use JAOcero\LaravelInertiaTable\Table\Contracts\HasTable;
+use JAOcero\ViltTable\Table\Concerns\CanEvaluateDependencyInjection;
+use JAOcero\ViltTable\Table\Concerns\CanFormatDate;
+use JAOcero\ViltTable\Table\Contracts\HasTable;
 
 class TableResource implements HasTable
 {

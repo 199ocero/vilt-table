@@ -1,13 +1,13 @@
 <?php
 
-namespace JAOcero\LaravelInertiaTable\Table;
+namespace JAOcero\ViltTable\Table;
 
-use JAOcero\LaravelInertiaTable\Table\Concerns\CanFormatDate;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasColumns;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasDescription;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasEmptyState;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasHeading;
-use JAOcero\LaravelInertiaTable\Table\Concerns\HasPagination;
+use JAOcero\ViltTable\Table\Concerns\CanFormatDate;
+use JAOcero\ViltTable\Table\Concerns\HasColumns;
+use JAOcero\ViltTable\Table\Concerns\HasDescription;
+use JAOcero\ViltTable\Table\Concerns\HasEmptyState;
+use JAOcero\ViltTable\Table\Concerns\HasHeading;
+use JAOcero\ViltTable\Table\Concerns\HasPagination;
 
 class Table
 {
