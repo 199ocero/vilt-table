@@ -1,6 +1,6 @@
-# Laravel Inertia Table
+# Vue | Inertia.js | Laravel | TailwindCSS
 
-This package is an Inertia.js table built with Laravel and Vue. The design and code structure are highly inspired by FilamentPHP's table.
+This package is an Inertia.js table built with Laravel, Vue, and TailwindCSS. The design and code structure are highly inspired by FilamentPHP's table.
 
 ## Features
 
