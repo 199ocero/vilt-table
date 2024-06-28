@@ -6,7 +6,7 @@ trait HasPagination
 {
     protected array $perPage = [10, 20, 50, 100];
 
-    public function paginate(array $perPage = []): static
+    public function pagination(array $perPage = []): static
     {
         if (! empty($perPage)) {
             $this->perPage = $perPage;
@@ -15,7 +15,7 @@ trait HasPagination
         return $this;
     }
 
-    public function getPaginate(): array
+    public function getPagination(): array
     {
         return $this->perPage;
     }
