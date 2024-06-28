@@ -3,6 +3,7 @@
 namespace JAOcero\ViltTable\Table;
 
 use JAOcero\ViltTable\Table\Concerns\CanFormatDate;
+use JAOcero\ViltTable\Table\Concerns\HasColor;
 use JAOcero\ViltTable\Table\Concerns\HasColumns;
 use JAOcero\ViltTable\Table\Concerns\HasDescription;
 use JAOcero\ViltTable\Table\Concerns\HasEmptyState;
@@ -12,6 +13,7 @@ use JAOcero\ViltTable\Table\Concerns\HasPagination;
 class Table
 {
     use CanFormatDate;
+    use HasColor;
     use HasColumns;
     use HasDescription;
     use HasEmptyState;

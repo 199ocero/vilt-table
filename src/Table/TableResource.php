@@ -208,7 +208,8 @@ class TableResource implements HasTable
         return collect([
             'table' => $this->prepareResourceRecords(),
             'filters' => $this->getFilters(),
-            'pagination' => $this->table->getPaginate(),
+            'color' => $this->table->getColor(),
+            'pagination' => $this->table->getPagination(),
             'columns' => $this->getColumnLabels($this->columns),
             'heading' => $this->table->getHeading(),
             'description' => $this->table->getDescription(),

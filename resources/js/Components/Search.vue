@@ -23,7 +23,15 @@
             <input
                 v-model="search"
                 type="text"
-                class="w-full px-4 py-3 text-sm border rounded-lg place-holder-zinc-400 dark:placeholder-zinc-500 text-zinc-900 dark:text-white ps-10 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                class="w-full px-4 py-3 text-sm border rounded-lg place-holder-zinc-400 dark:placeholder-zinc-500 text-zinc-900 dark:text-white ps-10 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2"
+                :class="{
+                    'focus:dark:ring-vilt-primary-400 focus:ring-vilt-primary-600': themeColor === 'primary',
+                    'focus:dark:ring-vilt-success-400 focus:ring-vilt-success-600': themeColor === 'success',
+                    'focus:dark:ring-vilt-info-400 focus:ring-vilt-info-600': themeColor === 'info',
+                    'focus:dark:ring-vilt-warning-400 focus:ring-vilt-warning-600': themeColor === 'warning',
+                    'focus:dark:ring-vilt-danger-400 focus:ring-vilt-danger-600': themeColor === 'danger',
+                    'focus:dark:ring-vilt-custom-400 focus:ring-vilt-custom-600 focus:border-none': themeColor === 'custom',
+                }"
                 placeholder="Search"
                 required
             />
@@ -33,7 +41,7 @@
 
 <script setup>
 import { router } from "@inertiajs/vue3";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import debounce from "lodash/debounce";
 
 const props = defineProps({
@@ -57,4 +65,8 @@ watch(
         );
     }, 300),
 );
+
+const themeColor = computed(() => {
+    return props.resources.color.name;
+});
 </script>

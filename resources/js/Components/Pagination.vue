@@ -23,7 +23,21 @@
         </span>
 
         <button
-            class="flex flex-row items-center pr-2 border rounded-lg cursor-default dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            class="flex flex-row items-center pr-2 border rounded-lg cursor-default dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2"
+            :class="{
+                'focus:dark:ring-vilt-primary-500 focus:ring-vilt-primary-600':
+                    themeColor === 'primary',
+                'focus:dark:ring-vilt-success-500 focus:ring-vilt-success-600':
+                    themeColor === 'success',
+                'focus:dark:ring-vilt-warning-500 focus:ring-vilt-warning-600':
+                    themeColor === 'warning',
+                'focus:dark:ring-vilt-danger-500 focus:ring-vilt-danger-600':
+                    themeColor === 'danger',
+                'focus:dark:ring-vilt-info-500 focus:ring-vilt-info-600':
+                    themeColor === 'info',
+                'focus:dark:ring-vilt-custom-500 focus:ring-vilt-custom-600':
+                    themeColor === 'custom',
+            }"
         >
             <div
                 class="flex items-center h-10 p-2 text-sm border-r text-zinc-500 dark:text-zinc-500 border-zinc-300 dark:border-zinc-700"
@@ -79,7 +93,22 @@
                             preserve-scroll
                             class="flex items-center justify-center h-10 px-4 leading-tight border"
                             :class="{
-                                'bg-zinc-100 text-purple-600 dark:bg-zinc-800/70 dark:text-purple-400 dark:border-zinc-700 border-zinc-300':
+                                'text-vilt-primary-600 dark:text-vilt-primary-400':
+                                    link.active &&
+                                    themeColor === 'primary',
+                                'text-vilt-success-600 dark:text-vilt-success-400':
+                                    link.active &&
+                                    themeColor === 'success',
+                                'text-vilt-warning-600 dark:text-vilt-warning-400':
+                                    link.active &&
+                                    themeColor === 'warning',
+                                'text-vilt-danger-600 dark:text-vilt-danger-400':
+                                    link.active && themeColor === 'danger',
+                                'text-vilt-info-600 dark:text-vilt-info-400':
+                                    link.active && themeColor === 'info',
+                                'text-vilt-custom-600 dark:text-vilt-custom-400':
+                                    link.active && themeColor === 'custom',
+                                'bg-zinc-100 dark:bg-zinc-800/70 dark:border-zinc-700 border-zinc-300':
                                     link.active,
                                 'dark:bg-zinc-800 dark:text-zinc-400 bg-white text-zinc-900 dark:border-zinc-700 border-zinc-300 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-white':
                                     !link.active,
@@ -155,5 +184,9 @@ const filteredLinks = computed(() => {
             link.label !== "&laquo; Previous" && link.label !== "Next &raquo;"
         );
     });
+});
+
+const themeColor = computed(() => {
+    return props.resources.color.name;
 });
 </script>
